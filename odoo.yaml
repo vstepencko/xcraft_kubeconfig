@@ -17,8 +17,14 @@ spec:
     spec:
       containers:
       - name: odoo
-        image: odoo
-         
+        image: odoo:12.0 
+        volumeMounts:
+        - mountPath: /etc/odoo
+          name: db-volume
+      volumes:
+      - name: db-volume
+        persistentVolumeClaim:
+          claimName: odoo-pv-claim
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -48,6 +54,13 @@ spec:
           value: 'postgres'
         ports:
         - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: db-volume
+      volumes:
+      - name: db-volume
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
 ---
 apiVersion: v1
 kind: Service
