@@ -57,10 +57,10 @@ spec:
     spec:
       containers:
       - name: db
-        image: postgres:12.0
+        image: mysql:8.0
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: 'karatau'
+          value: karatau
         ports:
         - containerPort: 3306
         volumeMounts:
