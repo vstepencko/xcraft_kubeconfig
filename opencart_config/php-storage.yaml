@@ -1,0 +1,29 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: php-pv-volume
+  labels:
+    type: local
+    app: php
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/var/storage/php-data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: php-pv-claim
+  labels:
+    app: php
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
