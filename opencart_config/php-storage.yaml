@@ -12,7 +12,7 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/var/storage/php-data"
+    path: "/var/storage/php-data/xcraft_opencart"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1

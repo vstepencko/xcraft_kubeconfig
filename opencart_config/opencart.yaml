@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: php
-        image: php:7.2-apache
+        image: vstepencko/php_opencart
+        imagePullPolicy: Always
         volumeMounts:
         - mountPath: /var/www/html
           name: php-volume
