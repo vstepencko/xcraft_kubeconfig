@@ -4,6 +4,7 @@ RUN docker-php-ext-install mysql mysqli
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    git \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -21,4 +22,16 @@ RUN curl -o ioncube.tar.gz http://downloads3.ioncube.com/loader_downloads/ioncub
     && mv ioncube/ioncube_loader_lin_5.6.so `php-config --extension-dir` \
     && rm -Rf ioncube.tar.gz ioncube \
     && docker-php-ext-enable ioncube_loader_lin_5.6
+
+RUN cd /var/www/
+
+
+RUN git clone  https://github.com/vstepencko/xcraft_opencart
+
+RUN mv ./xcraft_opencart/* /var/www/html/
+
+COPY ./configs/config.php /var/www/html/config.php
+
+COPY ./configs/config_admin.php /var/www/html/91VitZen85/config.php
+
 WORKDIR /var/www/html

@@ -19,13 +19,6 @@ spec:
       - name: php
         image: vstepencko/php_opencart
         imagePullPolicy: Always
-        volumeMounts:
-        - mountPath: /var/www/html
-          name: php-volume
-      volumes:
-      - name: php-volume
-        persistentVolumeClaim:
-          claimName: php-pv-claim
 ---
 apiVersion: v1
 kind: Service
